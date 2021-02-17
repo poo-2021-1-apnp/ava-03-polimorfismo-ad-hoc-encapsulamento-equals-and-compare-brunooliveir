@@ -136,7 +136,25 @@ class App {
 
 
 
-    /*
+    //testando datas invalidas
+
+  /*
+
+    try{
+      Data d15 = new Data(0,12,2020);
+      System.out.println(false);
+    }catch (Exception e){
+      System.out.println("true " + e.getMessage());
+    }
+
+    try {
+      Data d16 = new Data("10/13/2020");
+      System.out.println(false);
+    } catch (Exception e) {
+      System.out.println("true " + e.getMessage());
+    }
+
+
 
     Data da1 = new Data(2, 11 , 28);
     Data da2 = new Data("20/5/2028");
@@ -179,17 +197,11 @@ class App {
     System.out.println(da2.getAno() == 1);
 
 
+
     try{
       da2.setDia(50); // valor fora da faixa, não deve passar, maior que 31
       System.out.println(false);
     }catch (Exception e){
-      System.out.println("true " + e.getMessage());
-    }
-
-    try {
-      da2.setMes(13); // valor fora da faixa, não deve passar, maior que 12
-      System.out.println(false);
-    } catch (Exception e) {
       System.out.println("true " + e.getMessage());
     }
 
@@ -210,12 +222,46 @@ class App {
       System.out.println("true " + e.getMessage());
     }
 
-    */
+
+
+    // Teste de valores de travessia de mes
+
+    da2.setMes(2);
+    da2.setDia(28);
+    System.out.println(da2.getDia() == 28); // 28
+    da2.aumentaDia();
+    System.out.println(da2.getDia() == 1); // 1
+    System.out.println(da2.getMes() == 3); // 3
+    da2.diminuiDia();
+    System.out.println(da2.getDia() == 28); // 28
+    System.out.println(da2.getMes() == 2); // 2
+
+    //Teste de valores de travessia de ano
+
+    da2.setMes(12);
+    da2.setDia(31);
+    da2.setAno(2020);
+    System.out.println(da2.getDia() == 31); // 31
+    System.out.println(da2.getMes() == 12); // 12
+    System.out.println(da2.getAno() == 2020); // 2020
+
+
+    da2.aumentaDia();
+    System.out.println(da2.getDia() == 1); // 1
+    System.out.println(da2.getMes() == 1); // 1
+    System.out.println(da2.getAno() == 2021); // 2021
+
+    da2.diminuiDia();
+    System.out.println(da2.getDia() == 31); // 31
+    System.out.println(da2.getMes() == 12); // 12
+    System.out.println(da2.getAno() == 2020); // 2020
+
+*/
 
 
 
     // Teste veiculo
-
+/*
 
 
     Veiculo v1 = new Veiculo("zzzz", "LG" , "bicudo", 18);
@@ -237,6 +283,7 @@ class App {
     System.out.println(v8.equals(v9) == false);
     System.out.println(v8.equals(v10) == true);
 
+    */
 
   }
 }

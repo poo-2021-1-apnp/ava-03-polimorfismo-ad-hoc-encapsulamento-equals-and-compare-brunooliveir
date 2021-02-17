@@ -1,39 +1,39 @@
 package modelo;
 
 public class Veiculo {
-  final String placa, marca, modelo;
-  final int    cilindrada;
+  final String PLACA, MARCA, MODELO;
+  final int    CILINDRADA;
 
-  public Veiculo(String placa, String marca, String modelo, int cilindrada) {
-    this.placa = placa; this.marca = marca; this.modelo = modelo;
-    this.cilindrada = cilindrada;
+  public Veiculo(String PLACA, String MARCA, String MODELO, int CILINDRADA) {
+    this.PLACA = PLACA; this.MARCA = MARCA; this.MODELO = MODELO;
+    this.CILINDRADA = CILINDRADA;
   }
 
   public String getPlaca(){
-    return this.placa;
+    return this.PLACA;
   }
 
   public String getModelo() {
-    return this.modelo;
+    return this.MODELO;
   }
 
   public String getMarca() {
-    return this.marca;
+    return this.MARCA;
   }
 
   public int cilindrada() {
-    return this.cilindrada;
+    return this.CILINDRADA;
   }
 
   @Override
-  public boolean equals(Object obj) { //criterio sera ser da mesma marca, modelo e cilindrada, nao sendo interessante a comparacao de placa
+  public boolean equals(Object obj) { //criterio sera ser da mesma MARCA, MODELO e CILINDRADA, nao sendo interessante a comparacao de PLACA
     if (this == obj)
       return true;
     if (null == obj)
       return false;
     if (obj instanceof Veiculo) {
       Veiculo outroDinheiro = (Veiculo) obj;
-      if (this.marca == outroDinheiro.marca && this.modelo == outroDinheiro.modelo && this.cilindrada == outroDinheiro.cilindrada)
+      if (this.MARCA == outroDinheiro.MARCA && this.MODELO == outroDinheiro.MODELO && this.CILINDRADA == outroDinheiro.CILINDRADA)
         return true;
     }
     return false;
