@@ -63,8 +63,8 @@ class App {
     d7.somar("R$ 998871,86986");
     System.out.println(d7.getReais() == 1001439);
     System.out.println(d7.getCentavos() == 75);
-*/
 
+*/
 
     //novos testes ; equals
 
@@ -138,7 +138,7 @@ class App {
 
     //testando datas invalidas
 
-  /*
+
 
     try{
       Data d15 = new Data(0,12,2020);
@@ -256,7 +256,7 @@ class App {
     System.out.println(da2.getMes() == 12); // 12
     System.out.println(da2.getAno() == 2020); // 2020
 
-*/
+
 
 
 

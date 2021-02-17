@@ -1,11 +1,8 @@
 package modelo;
-import java.text.DecimalFormat;
 
 public class Dinheiro implements Comparable<Dinheiro> {
 
-  DecimalFormat dec = new DecimalFormat("0.000");
-  private int centavos, centavosLimposInt;
-  private String dinheiroDoubleStr = "";
+  private int centavos, centavosLimpos;
   private String[] dinheiroSemTexto, dinheiroSemVirgula;
 
 
@@ -41,23 +38,17 @@ public class Dinheiro implements Comparable<Dinheiro> {
   public void somar(String dinheiroStr){ // soma o dinheiro dado em String no objeto dinheiro
     this.dinheiroSemTexto = dinheiroStr.split(" ");
     this.dinheiroSemVirgula = dinheiroSemTexto[1].split(",");
-    this.centavosLimposInt = Integer.valueOf(dinheiroSemVirgula[1]);
-    while (centavosLimposInt > 100){
-      this.centavosLimposInt = centavosLimposInt/10;
+    this.centavosLimpos = Integer.valueOf(dinheiroSemVirgula[1]);
+    while (centavosLimpos > 100){
+      this.centavosLimpos = centavosLimpos/10;
     }
-    this.centavosLimposInt = (int)centavosLimposInt;
-    this.centavos += (Integer.valueOf(this.dinheiroSemVirgula[0]) * 100) + centavosLimposInt;
+    this.centavosLimpos = (int)centavosLimpos;
+    this.centavos += (Integer.valueOf(this.dinheiroSemVirgula[0]) * 100) + centavosLimpos;
   }
 
   public void somar(Double dinheiroDouble){ // soma o dinheiro dado em Double no objeto dinheiro
-    this.dinheiroDoubleStr = dec.format(dinheiroDouble);
-    this.dinheiroSemVirgula = dinheiroDoubleStr.split(",");
-    this.centavosLimposInt = Integer.valueOf(dinheiroSemVirgula[1]);
-    while (centavosLimposInt > 100) {
-      this.centavosLimposInt = centavosLimposInt / 10;
-    }
-    this.centavosLimposInt = (int) centavosLimposInt;
-    this.centavos += (Integer.valueOf(this.dinheiroSemVirgula[0]) * 100) + centavosLimposInt;
+    dinheiroDouble *= 100;
+    this.centavos += (dinheiroDouble).intValue();
   }
 
   public void somar(int dinheiroInt){ // soma o dinheiro dado em int no objeto dinheiro
@@ -77,7 +68,7 @@ public class Dinheiro implements Comparable<Dinheiro> {
     if (null == obj) return false;
     if (obj instanceof Dinheiro){
       Dinheiro outroDinheiro = (Dinheiro) obj;
-      if (this.centavos == outroDinheiro.centavos) return true;
+     return (this.centavos == outroDinheiro.centavos);
     }
     return false;
   }
