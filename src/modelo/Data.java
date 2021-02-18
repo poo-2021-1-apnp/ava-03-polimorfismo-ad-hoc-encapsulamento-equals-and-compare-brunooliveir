@@ -50,8 +50,8 @@ public class Data {
   }
 
   public void setInicioProximoMes(){ // aumenta 1 mes e dia = 1
-    this.mes++;
     this.dia = 1;
+    this.mes++;
   }
 
   public void setFimMesPassado(){ // diminui 1 mes e dia = limite de dias do novo mes
@@ -67,8 +67,8 @@ public class Data {
   }
 
   public void setInicioProximoAno(){ // aumenta 1 ano, dia = 1 e mes = 1
-    this.mes = 1;
     this.dia = 1;
+    this.mes = 1;
     this.ano++;
   }
 
@@ -84,25 +84,27 @@ public class Data {
     // caso mes ultrapasse 12,
     // o ano é acrescido em +1
     if (isMesDe31Dias()){
-      if (this.dia == DIA_MAXIMO_31){
-        if (this.mes == MES_MAXIMO_12){
-          setInicioProximoAno();
-        }else
+      if (this.dia == DIA_MAXIMO_31 && this.mes == MES_MAXIMO_12)
+        setInicioProximoAno();
+      else
+        if (this.dia == DIA_MAXIMO_31)
           setInicioProximoMes();
-      }else
-        this.dia +=1;
-    }else{
-      if (isMesDe28Dias()) {
-        if (this.dia == DIA_MAXIMO_28) {
-          setInicioProximoMes();
-        }else
+        else
           this.dia++;
-      }else{
-        if (this.dia == DIA_MAXIMO_30){
-          setInicioProximoMes();
-        }else
-          this.dia++;
-      }
+    }
+
+    if (isMesDe30Dias()){
+      if (this.dia == DIA_MAXIMO_30)
+        setInicioProximoMes();
+      else
+        this.dia++;
+    }
+
+    if (isMesDe28Dias()) {
+      if (this.dia == DIA_MAXIMO_28)
+        setInicioProximoMes();
+      else
+        this.dia++;
     }
   }
 
