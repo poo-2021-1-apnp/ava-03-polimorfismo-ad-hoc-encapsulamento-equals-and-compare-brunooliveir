@@ -37,24 +37,24 @@ public class Data {
     return this.ano;
   }
 
-  public boolean isMesDe31Dias(){ // retorna true caso seja mês de 31 dias
+  private boolean isMesDe31Dias(){ // retorna true caso seja mês de 31 dias
     return this.mes == 1 ||this.mes == 3 ||this.mes == 5 ||this.mes == 7 ||this.mes == 8 ||this.mes == 10|| this.mes == 12;
   }
 
-  public boolean isMesDe30Dias() { // retorna true caso seja mês de 30 dias
+  private boolean isMesDe30Dias() { // retorna true caso seja mês de 30 dias
     return this.mes == 4 || this.mes == 6 || this.mes == 9 || this.mes == 11;
   }
 
-  public boolean isMesDe28Dias() { // retorna true caso seja mês de 28 dias
+  private boolean isMesDe28Dias() { // retorna true caso seja mês de 28 dias
     return this.mes == 2;
   }
 
-  public void setInicioProximoMes(){ // aumenta 1 mes e dia = 1
+  private void setInicioProximoMes(){ // aumenta 1 mes e dia = 1
     this.dia = 1;
     this.mes++;
   }
 
-  public void setFimMesPassado(){ // diminui 1 mes e dia = limite de dias do novo mes
+  private void setFimMesPassado(){ // diminui 1 mes e dia = limite de dias do novo mes
     int i = 0;
     this.dia = 2;
     this.mes--;
@@ -66,13 +66,13 @@ public class Data {
     this.dia = 1 + i;
   }
 
-  public void setInicioProximoAno(){ // aumenta 1 ano, dia = 1 e mes = 1
+  private void setInicioProximoAno(){ // aumenta 1 ano, dia = 1 e mes = 1
     this.dia = 1;
     this.mes = 1;
     this.ano++;
   }
 
-  public void setFimAnoPassado(){ // diminui 1 ano, mes = 12 e dia = 31
+  private void setFimAnoPassado(){ // diminui 1 ano, mes = 12 e dia = 31
     this.ano--;
     this.mes = MES_MAXIMO_12;
     this.dia = DIA_MAXIMO_31;
