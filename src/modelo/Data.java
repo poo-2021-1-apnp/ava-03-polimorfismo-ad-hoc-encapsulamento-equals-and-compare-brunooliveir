@@ -49,31 +49,76 @@ public class Data {
     return this.mes == 2;
   }
 
+  private boolean isUltimoDiaDoAno(){ // retorna true caso seja o ultimo dia do ultimo mes do ano
+    return this.dia == DIA_MAXIMO_31 && this.mes == MES_MAXIMO_12;
+  }
+
+  private boolean isUltimoMesDoAno(){ // retorna true caso seja o ultimo mes do ano
+    return this.mes == MES_MAXIMO_12;
+  }
+
+  private boolean isUltimoDiaDoMes(){ // retorna true caso seja o ultimo dia do mes
+    if (isMesDe31Dias())
+      return this.dia == DIA_MAXIMO_31;
+
+    if (isMesDe30Dias())
+      return this.dia == DIA_MAXIMO_30;
+
+    if (isMesDe28Dias())
+      return this.dia == DIA_MAXIMO_28;
+
+    return false;
+  }
+
+  private void setProximoDia(){ // dia + 1
+    this.dia++;
+  }
+
+  private void setProximoMes() { // Mes + 1
+    this.mes++;
+  }
+
+  private void setProximoAno() { // Ano + 1
+    this.ano++;
+  }
+
+  private void setAnteriorDia() { // dia - 1
+    this.dia--;
+  }
+
+  private void setAnteriorMes() { // Mes - 1
+    this.mes--;
+  }
+
+  private void setAnteriorAno() { // Ano - 1
+    this.ano--;
+  }
+
   private void setInicioProximoMes(){ // aumenta 1 mes e dia = 1
     this.dia = 1;
-    this.mes++;
+    setProximoMes();
   }
 
   private void setFimMesPassado(){ // diminui 1 mes e dia = limite de dias do novo mes
     int i = 0;
     this.dia = 2;
-    this.mes--;
+    setAnteriorMes();
     while (this.dia != 1) {
       aumentaDia();
       i++;
     }
-    this.mes--;
+    setAnteriorMes();
     this.dia = 1 + i;
   }
 
   private void setInicioProximoAno(){ // aumenta 1 ano, dia = 1 e mes = 1
     this.dia = 1;
     this.mes = 1;
-    this.ano++;
+    setProximoAno();
   }
 
   private void setFimAnoPassado(){ // diminui 1 ano, mes = 12 e dia = 31
-    this.ano--;
+    setAnteriorAno();
     this.mes = MES_MAXIMO_12;
     this.dia = DIA_MAXIMO_31;
   }
@@ -84,27 +129,27 @@ public class Data {
     // caso mes ultrapasse 12,
     // o ano é acrescido em +1
     if (isMesDe31Dias()){
-      if (this.dia == DIA_MAXIMO_31 && this.mes == MES_MAXIMO_12)
+      if (isUltimoDiaDoAno())
         setInicioProximoAno();
       else
-        if (this.dia == DIA_MAXIMO_31)
+        if (isUltimoDiaDoMes())
           setInicioProximoMes();
         else
-          this.dia++;
+          setProximoDia();
     }
 
     if (isMesDe30Dias()){
-      if (this.dia == DIA_MAXIMO_30)
+      if (isUltimoDiaDoMes())
         setInicioProximoMes();
       else
-        this.dia++;
+        setProximoDia();
     }
 
     if (isMesDe28Dias()) {
-      if (this.dia == DIA_MAXIMO_28)
+      if (isUltimoDiaDoMes())
         setInicioProximoMes();
       else
-        this.dia++;
+        setProximoDia();
     }
   }
 
@@ -112,16 +157,16 @@ public class Data {
     // aumenta o mes em +1
     // caso mes ultrapasse 12,
     // o ano é acrescido em +1
-    if (this.mes == MES_MAXIMO_12) {
-      this.ano++;
+    if (isUltimoMesDoAno()) {
+      setProximoAno();
       this.mes = 1;
     } else
-      this.mes++;
+      setProximoMes();
   }
 
   public void aumentaAno() {
     // o ano é acrescido em +1
-    this.ano++;
+    setProximoAno();
   }
 
   public void diminuiDia(){
@@ -139,7 +184,7 @@ public class Data {
         setFimMesPassado();
 
     }else
-      this.dia--;
+      setAnteriorDia();
 
   }
 
@@ -149,17 +194,17 @@ public class Data {
     // entao mes assume valor 12
     // e ano assume valor de (ano -1).
     if (this.mes == 1){
-      this.ano--;
+      setAnteriorAno();
       this.mes = MES_MAXIMO_12;
     }else{
-      this.mes--;
+      setAnteriorMes();
     }
   }
 
   public void diminuiAno(){
     // e ano assume valor de (ano -1).
     if (this.ano > 0)
-      this.ano--;
+      setAnteriorAno();
   }
 
   public void setDia(int dia){  // define o dia com o valor inteiro informado
